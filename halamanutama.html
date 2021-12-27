@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="Style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To Indonesia! </title>
+</head>
+<script>
+    var kotaProvinsi  = {
+        JawaBarat : ["-", "Bandung", "Garut", "Tasikmalaya", "Ciamis", "Banjar", "Pangandaran"],
+        DKIJakarta : ["-", "Jakarta Utara", "Jakarta Selatan", "Jakarta Barat", "Jakarta Timur", "Jakarta Pusat", "Kepulauan Seribu"],
+        PapuaBarat : ["-", "Fakfak", "Kaimana", "Manokwari", "Raja Ampat", "Sorong", "Teluk Bintuni"],
+        SulawesiBarat : ["-", "Majene", "Mamasa", "Mamuju", "Mamuju Tengah", "Pasang Kayu", "Polewali Mandar"],
+        KalimantanUtara :["-", "Bulungan","Malinau","Nunukan","Tana Tindung","Tarakan"]
+    }
+
+    function menu(value){
+        if(value.length==0) {
+            document.getElementById("kota").innerHTML = "<option></option>";
+        }
+        else {
+            var pilihKota = "";
+            for(kotaID in kotaProvinsi[value]) {
+                pilihKota+="<option>"+kotaProvinsi[value][kotaID]+"</option>";
+            }
+            document.getElementById("kota").innerHTML = pilihKota;
+        }
+    }
+
+    function tampil(){
+        var diProvinsi = document.getElementById("provinsi").value;
+        var diKota = document.getElementById("kota").value;
+        var keluaran = document.getElementById("output");
+        keluaran.innerText = "Letak Kota/Kabupaten " + diKota + " berada di provinsi " + diProvinsi;
+    }
+    
+    function resetPilih() {
+        document.getElementById("provinsi").selectedIndex = 0;
+        document.getElementById("kota").selectedIndex = 0;
+    }
+
+    function darkMode() {  
+        var element = document.body;
+        element.classList.toggle("dark");
+    }
+</script>
+<body onload = "resetPilih()">
+    <center>
+        <div id= "header">
+            <h1> <font size= 6  > Welcome to Indonesia! </font></h1>
+        </div>
+
+        <img src="pngwing.com.png" width=60% alt="Peta Indonesia">
+            <br>
+            <select name="provinsi" id="provinsi" size="1" onchange="menu(this.value)">
+                <option value="" disabled selected>Pilih Provinsi</option>
+                <option value= "JawaBarat">Jawa Barat</option>
+                <option value= "DKIJakarta">DKI Jakarta</option>
+                <option value= "PapuaBarat">Papua Barat</option>
+                <option value= "SulawesiBarat">Sulawesi Barat</option>
+                <option value= "KalimantanUtara">Kalimantan Utara</option>
+            </select> 
+            <select name="kota" id="kota" size="1">
+                <option value="" disabled selected>Pilih Kota</option>
+                <option></option>
+            </select>
+            <br>
+            <br>
+            <button onclick="tampil()" class="tampil">Tampilkan</button>   
+            <p id="output"></p>
+        <br>
+    </center>
+    
+</body>
+</html>
